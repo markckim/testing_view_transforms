@@ -13,6 +13,7 @@
 		FE21B24F285FDAA5009C739D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE21B24D285FDAA5009C739D /* Main.storyboard */; };
 		FE21B251285FDAA6009C739D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE21B250285FDAA6009C739D /* Assets.xcassets */; };
 		FE21B254285FDAA6009C739D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE21B252285FDAA6009C739D /* LaunchScreen.storyboard */; };
+		FE21B25C285FDC85009C739D /* LabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE21B25B285FDC85009C739D /* LabelView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		FE21B250285FDAA6009C739D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FE21B253285FDAA6009C739D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FE21B255285FDAA6009C739D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FE21B25B285FDC85009C739D /* LabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				FE21B250285FDAA6009C739D /* Assets.xcassets */,
 				FE21B252285FDAA6009C739D /* LaunchScreen.storyboard */,
 				FE21B255285FDAA6009C739D /* Info.plist */,
+				FE21B25B285FDC85009C739D /* LabelView.swift */,
 			);
 			path = testing_view;
 			sourceTree = "<group>";
@@ -139,6 +142,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FE21B24C285FDAA5009C739D /* ViewController.swift in Sources */,
+				FE21B25C285FDC85009C739D /* LabelView.swift in Sources */,
 				FE21B248285FDAA5009C739D /* AppDelegate.swift in Sources */,
 				FE21B24A285FDAA5009C739D /* SceneDelegate.swift in Sources */,
 			);
