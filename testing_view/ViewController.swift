@@ -32,15 +32,18 @@ class ViewController: UIViewController {
             return
         }
 
-        // position
+        // position and scale testView
         let initialTranslation = CGAffineTransform(translationX: 100, y: -200)
         let initialScale = CGAffineTransform(scaleX: 0.1, y: 0.1)
         let combinedInitialTransform = initialScale.concatenating(initialTranslation)
-
         testView.transform = combinedInitialTransform
 
-        UIView.animate(withDuration: 0.5) {
-            testView.transform = CGAffineTransform(scaleX: 1, y: 1)
+        UIView.animate(withDuration: 2.0) {
+            let translation = CGAffineTransform(translationX: 0, y: 0)
+            let scale = CGAffineTransform(scaleX: 1, y: 1)
+            let combinedTransform = scale.concatenating(translation)
+            testView.transform = combinedTransform
+
         } completion: { success in
             // do stuff
         }
