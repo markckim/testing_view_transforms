@@ -14,6 +14,11 @@
 		FE21B251285FDAA6009C739D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE21B250285FDAA6009C739D /* Assets.xcassets */; };
 		FE21B254285FDAA6009C739D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE21B252285FDAA6009C739D /* LaunchScreen.storyboard */; };
 		FE21B25C285FDC85009C739D /* LabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE21B25B285FDC85009C739D /* LabelView.swift */; };
+		FE21B25E28601C66009C739D /* LabelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE21B25D28601C66009C739D /* LabelViewController.swift */; };
+		FE21B26028602D0F009C739D /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE21B25F28602D0F009C739D /* PickerView.swift */; };
+		FE21B26228603603009C739D /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE21B26128603603009C739D /* StatsView.swift */; };
+		FE21B266286041ED009C739D /* close_button.png in Resources */ = {isa = PBXBuildFile; fileRef = FE21B265286041ED009C739D /* close_button.png */; };
+		FE21B26828604D8F009C739D /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE21B26728604D8F009C739D /* InfoView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +31,11 @@
 		FE21B253285FDAA6009C739D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FE21B255285FDAA6009C739D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FE21B25B285FDC85009C739D /* LabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelView.swift; sourceTree = "<group>"; };
+		FE21B25D28601C66009C739D /* LabelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelViewController.swift; sourceTree = "<group>"; };
+		FE21B25F28602D0F009C739D /* PickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerView.swift; sourceTree = "<group>"; };
+		FE21B26128603603009C739D /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
+		FE21B265286041ED009C739D /* close_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = close_button.png; sourceTree = "<group>"; };
+		FE21B26728604D8F009C739D /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +68,7 @@
 		FE21B246285FDAA5009C739D /* testing_view */ = {
 			isa = PBXGroup;
 			children = (
+				FE21B265286041ED009C739D /* close_button.png */,
 				FE21B247285FDAA5009C739D /* AppDelegate.swift */,
 				FE21B249285FDAA5009C739D /* SceneDelegate.swift */,
 				FE21B24B285FDAA5009C739D /* ViewController.swift */,
@@ -65,7 +76,11 @@
 				FE21B250285FDAA6009C739D /* Assets.xcassets */,
 				FE21B252285FDAA6009C739D /* LaunchScreen.storyboard */,
 				FE21B255285FDAA6009C739D /* Info.plist */,
+				FE21B25D28601C66009C739D /* LabelViewController.swift */,
 				FE21B25B285FDC85009C739D /* LabelView.swift */,
+				FE21B25F28602D0F009C739D /* PickerView.swift */,
+				FE21B26128603603009C739D /* StatsView.swift */,
+				FE21B26728604D8F009C739D /* InfoView.swift */,
 			);
 			path = testing_view;
 			sourceTree = "<group>";
@@ -128,6 +143,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FE21B266286041ED009C739D /* close_button.png in Resources */,
 				FE21B254285FDAA6009C739D /* LaunchScreen.storyboard in Resources */,
 				FE21B251285FDAA6009C739D /* Assets.xcassets in Resources */,
 				FE21B24F285FDAA5009C739D /* Main.storyboard in Resources */,
@@ -141,9 +157,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FE21B26828604D8F009C739D /* InfoView.swift in Sources */,
 				FE21B24C285FDAA5009C739D /* ViewController.swift in Sources */,
+				FE21B25E28601C66009C739D /* LabelViewController.swift in Sources */,
+				FE21B26028602D0F009C739D /* PickerView.swift in Sources */,
 				FE21B25C285FDC85009C739D /* LabelView.swift in Sources */,
 				FE21B248285FDAA5009C739D /* AppDelegate.swift in Sources */,
+				FE21B26228603603009C739D /* StatsView.swift in Sources */,
 				FE21B24A285FDAA5009C739D /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

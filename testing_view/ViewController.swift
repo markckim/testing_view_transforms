@@ -10,9 +10,15 @@ import UIKit
 class ViewController: UIViewController {
 
     var testView: UIView?
+    var originalFrame: CGRect = .zero
+    var originalCenter: CGPoint = .zero
+
+    var infoView: InfoView?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        createAndSetupInfoView()
+        //createAndSetupLabelVC()
     }
 
     func createAndSetupTestView() {
@@ -50,42 +56,83 @@ class ViewController: UIViewController {
         }
     }
 
-    func showBottomSheet() {
-        let vc = UIViewController()
-
-        vc.view.backgroundColor = UIColor.systemGray6
-
-        let nav = UINavigationController(rootViewController: vc)
-        nav.isModalInPresentation = true
-        nav.modalPresentationStyle = .pageSheet
-        if let sheetPresentationController = nav.sheetPresentationController {
-            sheetPresentationController.detents = [.medium()]
+    override func viewSafeAreaInsetsDidChange() {
+        guard let infoView = infoView else {
+            return
         }
+        var proposedViewSize = infoView.bounds.size
+        proposedViewSize.height += view.safeAreaInsets.bottom
+        infoView.frame = CGRectMake(0.0, 0.5 * (view.bounds.height - proposedViewSize.height), proposedViewSize.width, proposedViewSize.height)
+    }
 
-        self.present(nav, animated: false, completion: nil)
+    func createAndSetupInfoView() {
+        let labelSize = CGSizeMake(view.bounds.width, 60)
+        let pickerSize = CGSizeMake(view.bounds.width, 160)
+        let statsSize = CGSizeMake(view.bounds.width, 80)
+        let infoView = InfoView(labelSize: labelSize, pickerSize: pickerSize, statsSize: statsSize)
+        infoView.backgroundColor = UIColor.systemGray6
+        infoView.sizeToFit()
+
+        var proposedViewSize = infoView.bounds.size
+        proposedViewSize.height += view.safeAreaInsets.top + view.safeAreaInsets.bottom
+        infoView.frame = CGRectMake(0.0, 0.5 * (view.bounds.height - proposedViewSize.height), proposedViewSize.width, proposedViewSize.height)
+        infoView.layer.cornerRadius = 12
+
+        originalFrame = infoView.frame
+        originalCenter = infoView.center
+        self.infoView = infoView
+
+        view.addSubview(infoView)
     }
 
     @IBAction func didTapTestButton(_ sender: Any) {
-        showBottomSheet()
+        guard let infoView = infoView else {
+            return
+        }
 
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-            // animate scale down
-            if let presentedViewController = self.presentedViewController, let presentedView = presentedViewController.view {
-                UIView.animate(withDuration: 1.0) {
-                    let x0 = 0.5 * self.view.bounds.width
-                    let y0 = self.view.bounds.height - 0.5 * presentedView.bounds.height
+        let animationOptions: UIView.AnimationOptions = .curveEaseInOut
+        let keyframeAnimationOptions = UIView.KeyframeAnimationOptions(rawValue: animationOptions.rawValue)
+
+        UIView.animateKeyframes(withDuration: 0.75, delay: 0.0, options: keyframeAnimationOptions) {
+            let translation = CGAffineTransform(translationX: 0, y: 0)
+            let scale = CGAffineTransform(scaleX: 0.1, y: 0.1)
+            let combinedTransform = scale.concatenating(translation)
+            infoView.transform = combinedTransform
+        } completion: { success in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.75) {
+                UIView.animateKeyframes(withDuration: 0.75, delay: 0.0, options: keyframeAnimationOptions) {
+                    let x0 = self.originalCenter.x
+                    let y0 = self.originalCenter.y
                     let x1 = 0.5 * self.view.bounds.width
-                    let y1 = 0.5 * self.view.bounds.height
+                    let y1 = self.view.bounds.height - 0.5 * self.originalFrame.height
                     let dx = x1 - x0
                     let dy = y1 - y0
+
                     let translation = CGAffineTransform(translationX: dx, y: dy)
-
-                    let scale = CGAffineTransform(scaleX: 0.1, y: 0.1)
-
+                    let scale = CGAffineTransform(scaleX: 1, y: 1)
                     let combinedTransform = scale.concatenating(translation)
-                    presentedView.transform = combinedTransform
+
+                    infoView.transform = combinedTransform
                 } completion: { success in
-                    self.dismiss(animated: false)
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.75) {
+                        UIView.animateKeyframes(withDuration: 0.75, delay: 0.0, options: keyframeAnimationOptions) {
+                            let translation = CGAffineTransform(translationX: 0, y: 0)
+                            let scale = CGAffineTransform(scaleX: 0.1, y: 0.1)
+                            let combinedTransform = scale.concatenating(translation)
+                            infoView.transform = combinedTransform
+                        } completion: { success in
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.75) {
+                                UIView.animateKeyframes(withDuration: 0.75, delay: 0.0, options: keyframeAnimationOptions) {
+                                    let translation = CGAffineTransform(translationX: 0, y: 0)
+                                    let scale = CGAffineTransform(scaleX: 1, y: 1)
+                                    let combinedTransform = scale.concatenating(translation)
+                                    infoView.transform = combinedTransform
+                                } completion: { success in
+                                    // do stuff
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }

@@ -26,13 +26,11 @@ class LabelView: UIView {
     }
 
     required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        setupView()
-        setupConstraints()
+        fatalError()
     }
 
     func setupView() {
-        self.backgroundColor = UIColor.systemTeal
+        self.backgroundColor = UIColor.systemGray
 
         titleLabel = UILabel()
         guard let titleLabel = titleLabel else {
@@ -41,6 +39,8 @@ class LabelView: UIView {
         titleLabel.font = UIFont.preferredFont(forTextStyle: .title1)
         titleLabel.textAlignment = .center
         addSubview(titleLabel)
+
+        self.titleLabel = titleLabel
     }
 
     func setupConstraints() {
