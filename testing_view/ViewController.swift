@@ -13,8 +13,8 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        createAndSetupTestView()
     }
+
     func createAndSetupTestView() {
         let width = CGFloat(300)
         let height = CGFloat(200)
@@ -27,8 +27,9 @@ class ViewController: UIViewController {
         self.testView = testView
     }
 
-    @IBAction func didTapTestButton(_ sender: Any) {
+    func animateTestView() {
         guard let testView = testView else {
+            print("missing testView")
             return
         }
 
@@ -46,6 +47,47 @@ class ViewController: UIViewController {
 
         } completion: { success in
             // do stuff
+        }
+    }
+
+    func showBottomSheet() {
+        let vc = UIViewController()
+
+        vc.view.backgroundColor = UIColor.systemGray6
+
+        let nav = UINavigationController(rootViewController: vc)
+        nav.isModalInPresentation = true
+        nav.modalPresentationStyle = .pageSheet
+        if let sheetPresentationController = nav.sheetPresentationController {
+            sheetPresentationController.detents = [.medium()]
+        }
+
+        self.present(nav, animated: false, completion: nil)
+    }
+
+    @IBAction func didTapTestButton(_ sender: Any) {
+        showBottomSheet()
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            // animate scale down
+            if let presentedViewController = self.presentedViewController, let presentedView = presentedViewController.view {
+                UIView.animate(withDuration: 1.0) {
+                    let x0 = 0.5 * self.view.bounds.width
+                    let y0 = self.view.bounds.height - 0.5 * presentedView.bounds.height
+                    let x1 = 0.5 * self.view.bounds.width
+                    let y1 = 0.5 * self.view.bounds.height
+                    let dx = x1 - x0
+                    let dy = y1 - y0
+                    let translation = CGAffineTransform(translationX: dx, y: dy)
+
+                    let scale = CGAffineTransform(scaleX: 0.1, y: 0.1)
+
+                    let combinedTransform = scale.concatenating(translation)
+                    presentedView.transform = combinedTransform
+                } completion: { success in
+                    self.dismiss(animated: false)
+                }
+            }
         }
     }
 }
